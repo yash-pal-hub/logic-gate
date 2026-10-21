@@ -1,0 +1,167 @@
+<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Digital Logic and Electronics Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Interactive Digital Logic &amp; Electronics Lab</h1>
+    <nav>
+      <button id="tab-gates" class="tab-btn active" data-tab="gates">Logic Gates</button>
+      <button id="tab-circuit" class="tab-btn" data-tab="circuit">Circuit Workspace</button>
+    </nav>
+  </header>
+
+  <main>
+                                     LOGIC GATES TAB
+ 
+    <section id="section-gates" class="tab-section active">
+      <h2>Logic Gate Simulator</h2>
+      <div id="gate-selector">
+        <label for="gate-type">Select Gate:</label>
+        <select id="gate-type">
+          <option value="AND">AND</option>
+          <option value="OR">OR</option>
+          <option value="NOT">NOT</option>
+          <option value="NAND">NAND</option>
+          <option value="NOR">NOR</option>
+          <option value="XOR">XOR</option>
+          <option value="XNOR">XNOR</option>
+        </select>
+      </div>
+
+      <div id="gate-display-container">
+        <div id="gate-symbol-display">
+          <svg id="gate-symbol" viewBox="0 0 120 80" width="120" height="80"></svg>
+        </div>
+
+        <div id="gate-interactive">
+          <div id="gate-inputs">
+            <div class="input-row">
+              <label>Input A:</label>
+              <button id="input-a-btn" class="toggle-btn" data-value="0">0</button>
+            </div>
+            <div class="input-row" id="input-b-row">
+              <label>Input B:</label>
+              <button id="input-b-btn" class="toggle-btn" data-value="0">0</button>
+            </div>
+          </div>
+          <div id="gate-display">
+            <div id="gate-expression"></div>
+            <div id="gate-output">Output Y = <span id="output-value">0</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="truth-table-container">
+        <h3>Truth Table</h3>
+        <table id="truth-table">
+          <thead id="truth-table-head"></thead>
+          <tbody id="truth-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+                               CIRCUIT WORKSPACE TAB 
+
+    <section id="section-circuit" class="tab-section">
+      <h2>Circuit Workspace</h2>
+
+      <div id="circuit-toolbar">
+        <fieldset>
+          <legend>Add Component</legend>
+          <select id="component-select">
+            <option value="battery">Battery (DC Source)</option>
+            <option value="resistor">Resistor</option>
+            <option value="led">LED</option>
+            <option value="diode">Diode</option>
+            <option value="switch">Switch</option>
+            <option value="ammeter">Ammeter</option>
+            <option value="voltmeter">Voltmeter</option>
+            <option value="logic-input">Logic Input (High/Low)</option>
+          </select>
+          <button id="add-component-btn">Add</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Wiring</legend>
+          <label class="wire-color-toggle">
+            <input type="radio" name="wire-color" value="black" checked>
+            <span>Black (GND)</span>
+          </label>
+          <label class="wire-color-toggle">
+            <input type="radio" name="wire-color" value="red">
+            <span>Red (+)</span>
+          </label>
+          <button id="wire-mode-btn">Wire Mode: OFF</button>
+          <span id="wire-status"></span>
+        </fieldset>
+
+        <fieldset>
+          <legend>Actions</legend>
+          <button id="undo-btn" title="Undo (Ctrl+Z)">↶ Undo</button>
+          <button id="redo-btn" title="Redo (Ctrl+Y)">↷ Redo</button>
+          <button id="delete-mode-btn">Delete Mode: OFF</button>
+          <button id="reset-circuit-btn">Reset</button>
+          <button id="run-sim-btn">Simulate</button>
+        </fieldset>
+      </div>
+
+      <div id="circuit-workspace-container">
+        <div id="breadboard">
+          <h3>Circuit Workspace</h3>
+          <div id="workspace-area"></div>
+        </div>
+
+        <div id="circuit-info-panel">
+          <h3>Component Table</h3>
+          <div id="component-table-wrapper">
+            <table id="component-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>State / Value</th>
+                  <th>Voltage (V)</th>
+                  <th>Current (mA)</th>
+                  <th>Connections</th>
+                </tr>
+              </thead>
+              <tbody id="component-table-body"></tbody>
+            </table>
+          </div>
+
+          <div id="simulation-log">
+            <h3>Simulation Log</h3>
+            <div id="log-output"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for editing component parameters -->
+  <div id="param-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="modal-title">Edit Component</h3>
+      <div id="modal-fields"></div>
+      <div class="modal-actions">
+        <button id="modal-save">Save</button>
+        <button id="modal-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+<div style="text-align: center;">
+  <footer class="footer">
+
+    <p> Instagram Yash_pal_112 & Github yash-pal-hub <p><a href="https://www.instagram.com/yash_pal_112/">My Instagram</a><a href="https://github.com/yash-pal-hub/">My Git-Hub</a>
+    <p>&copy; 2026 LogicGate &mdash; Yash Pal </p>
+    <p>Email: alwaysdemonyash@gmail.com </p>
+  </footer>     </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

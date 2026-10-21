@@ -1,0 +1,676 @@
+/* === Reset and base === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #1a1a1a;
+  background: #f5f5f5;
+}
+
+header {
+  background: #fff;
+  border-bottom: 2px solid #ccc;
+  padding: 12px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+header h1 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+nav {
+  display: flex;
+  gap: 4px;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  border: 1px solid #999;
+  background: #eee;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background: #ddd;
+}
+
+.tab-btn.active {
+  background: #fff;
+  border-bottom-color: #fff;
+  font-weight: bold;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+}
+
+main {
+  padding: 16px 20px;
+}
+
+.tab-section {
+  display: none;
+}
+
+.tab-section.active {
+  display: block;
+}
+
+h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* === Logic Gates Section === */
+#gate-selector {
+  margin-bottom: 12px;
+}
+
+#gate-selector label {
+  display: inline-block;
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+#gate-selector select {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+#gate-display-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+#gate-symbol-display {
+  flex-shrink: 0;
+  padding: 16px;
+  background: linear-gradient(135deg, #f9f9f9, #fafafa);
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#gate-symbol {
+  width: 120px;
+  height: 80px;
+}
+
+#gate-interactive {
+  display: flex;
+  gap: 30px;
+  flex: 1;
+}
+
+#gate-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input-row label {
+  font-weight: 500;
+  min-width: 70px;
+}
+
+.toggle-btn {
+  width: 48px;
+  height: 32px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #666;
+  background: linear-gradient(135deg, #ddd, #ccc);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.toggle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.toggle-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.toggle-btn[data-value="1"] {
+  background: linear-gradient(135deg, #5a5, #4a4);
+  color: #fff;
+  border-color: #393;
+}
+
+#gate-display {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#gate-expression {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  padding: 8px 12px;
+  background: #f0f0f0;
+  border-left: 3px solid #0066cc;
+  border-radius: 2px;
+}
+
+#gate-output {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#output-value {
+  display: inline-block;
+  min-width: 24px;
+  text-align: center;
+  padding: 4px 12px;
+  border: 2px solid #0066cc;
+  background: linear-gradient(135deg, #e6f2ff, #f0f8ff);
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+#truth-table-container {
+  max-width: 600px;
+}
+
+#truth-table {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#truth-table th,
+#truth-table td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 13px;
+}
+
+#truth-table th {
+  background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+  font-weight: 600;
+}
+
+#truth-table tr:hover {
+  background: #f9f9f9;
+}
+
+#truth-table tr.active-row {
+  background: linear-gradient(135deg, #d0e8ff, #e0f0ff);
+  font-weight: 600;
+}
+
+/* === Circuit Section === */
+#circuit-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+#circuit-toolbar fieldset {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#circuit-toolbar legend {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0 6px;
+  color: #555;
+}
+
+#circuit-toolbar select,
+#circuit-toolbar button {
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid #999;
+  background: linear-gradient(135deg, #f8f8f8, #f0f0f0);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+#circuit-toolbar button:hover {
+  background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#circuit-toolbar button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+#undo-btn:disabled, #redo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#wire-mode-btn.active,
+#delete-mode-btn.active {
+  background: linear-gradient(135deg, #c55, #a33);
+  color: #fff;
+  border-color: #833;
+}
+
+.wire-color-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: #f8f8f8;
+  transition: all 0.2s ease;
+}
+
+.wire-color-toggle input[type="radio"] {
+  cursor: pointer;
+}
+
+.wire-color-toggle input[type="radio"]:checked + span {
+  font-weight: 600;
+}
+
+.wire-color-toggle input[type="radio"]:checked {
+  accent-color: #0066cc;
+}
+
+#wire-status {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+#circuit-workspace-container {
+  display: flex;
+  gap: 16px;
+}
+
+#breadboard {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+#breadboard h3 {
+  margin-bottom: 12px;
+}
+
+#workspace-area {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  border: 2px solid #bbb;
+  background: linear-gradient(135deg, #f9f9f9 0%, #fafafa 100%);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* --- Realistic Component Nodes on the workspace --- */
+.comp-node {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+  z-index: 2;
+  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+
+.comp-node:hover {
+  transform: scale(1.08) translateZ(0);
+  z-index: 3;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.2));
+}
+
+.comp-node.dragging {
+  z-index: 10;
+  cursor: grabbing;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));
+}
+
+.comp-node svg {
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+.comp-node:hover svg {
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.comp-label {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 600;
+  font-size: 11px;
+  color: #333;
+  white-space: nowrap;
+  pointer-events: none;
+  background: rgba(255,255,255,0.9);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.comp-controls {
+  position: absolute;
+  top: -28px;
+  right: 0;
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.comp-controls button {
+  font-size: 10px;
+  padding: 2px 6px;
+  cursor: pointer;
+  border: 1px solid #666;
+  background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+  border-radius: 2px;
+  transition: all 0.15s ease;
+}
+
+.comp-controls button:hover {
+  background: linear-gradient(135deg, #e0e0e0, #d8d8d8);
+  transform: translateY(-1px);
+}
+
+/* Terminal labels on wires */
+.terminal-label {
+  position: absolute;
+  font-size: 10px;
+  font-weight: bold;
+  background: rgba(255,255,255,0.95);
+  padding: 2px 4px;
+  border-radius: 2px;
+  pointer-events: none;
+  border: 1px solid #666;
+  z-index: 5;
+}
+
+.terminal-label.positive {
+  color: #cc0000;
+  border-color: #cc0000;
+}
+
+.terminal-label.negative {
+  color: #000;
+  border-color: #000;
+}
+
+/* SVG wires layer */
+#wire-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#wire-svg line {
+  pointer-events: stroke;
+  cursor: pointer;
+  transition: stroke-width 0.2s ease;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+
+#wire-svg line:hover {
+  stroke-width: 4 !important;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.3));
+}
+
+#wire-svg line.black-wire {
+  stroke: #1a1a1a;
+}
+
+#wire-svg line.red-wire {
+  stroke: #cc0000;
+}
+
+/* === Info panel === */
+#circuit-info-panel {
+  width: 420px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#component-table-wrapper {
+  border: 1px solid #ccc;
+  background: #fff;
+  max-height: 320px;
+  overflow-y: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+#component-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+}
+
+#component-table th,
+#component-table td {
+  border: 1px solid #ddd;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+#component-table th {
+  background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+  position: sticky;
+  top: 0;
+  font-weight: 600;
+}
+
+#component-table tbody tr:hover {
+  background: #f9f9f9;
+}
+
+#simulation-log {
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 10px;
+  flex: 1;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+#log-output {
+  max-height: 250px;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  white-space: pre-wrap;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* === Modal === */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(2px);
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  border: 1px solid #999;
+  padding: 20px;
+  min-width: 280px;
+  max-width: 400px;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  animation: modal-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modal-pop {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-content h3 {
+  margin-bottom: 16px;
+}
+
+#modal-fields label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+#modal-fields input,
+#modal-fields select {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 13px;
+  margin-top: 4px;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+#modal-fields input:focus,
+#modal-fields select:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 4px rgba(0,102,204,0.3);
+}
+
+.modal-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.modal-actions button {
+  padding: 6px 16px;
+  cursor: pointer;
+  border: 1px solid #999;
+  background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  font-size: 13px;
+}
+
+.modal-actions button:hover {
+  background: linear-gradient(135deg, #e0e0e0, #d8d8d8);
+  transform: translateY(-1px);
+}
+
+#modal-save {
+  background: linear-gradient(135deg, #5a5, #4a4);
+  color: #fff;
+  border-color: #393;
+}
+
+#modal-save:hover {
+  background: linear-gradient(135deg, #6b6, #5b5);
+}
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  #circuit-workspace-container {
+    flex-direction: column;
+  }
+  #circuit-info-panel {
+    width: 100%;
+  }
+  #gate-display-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  #circuit-toolbar {
+    gap: 8px;
+  }
+
+  #circuit-toolbar fieldset {
+    gap: 6px;
+    padding: 8px 10px;
+  }
+
+  .comp-label {
+    font-size: 10px;
+  }
+}
